@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -20,18 +21,22 @@ export default function Home() {
     <div className="min-h-screen flex flex-col">
       {/* Gradient halo background */}
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-        <div className="absolute top-[-20%] left-[50%] -translate-x-1/2 w-[1200px] h-[800px] rounded-full bg-primary/10 blur-[120px]" />
-        <div className="absolute bottom-[-30%] right-[-10%] w-[800px] h-[800px] rounded-full bg-primary/5 blur-[100px]" />
+        <div className="absolute top-[-20%] left-[50%] -translate-x-1/2 w-6xl h-192 rounded-full bg-primary/10 blur-[120px]" />
+        <div className="absolute bottom-[-30%] right-[-10%] w-3xl h-192 rounded-full bg-primary/5 blur-[100px]" />
       </div>
 
       {/* Nav */}
       <header className="sticky top-0 z-50 w-full border-b border-border/40 backdrop-blur-xl bg-background/60">
-        <div className="mx-auto max-w-7xl flex h-16 items-center justify-between px-6">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="size-8 rounded-md bg-primary/15 border border-primary/30 flex items-center justify-center">
-              <Boxes className="size-4 text-primary" />
-            </div>
-            <span className="font-semibold tracking-tight">Motion Digital</span>
+        <div className="mx-auto max-w-7xl flex h-20 items-center justify-between px-6">
+          <Link href="/" className="flex items-center" aria-label="Motion Digital">
+            <Image
+              src="/motion_digital_logo_stretched.png"
+              alt="Motion Digital"
+              width={1167}
+              height={338}
+              priority
+              className="h-14 w-auto"
+            />
           </Link>
           <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
             <Link href="#features" className="hover:text-foreground transition">
@@ -97,7 +102,7 @@ export default function Home() {
           {/* Hero preview placeholder */}
           <div className="mt-20 mx-auto max-w-5xl">
             <div className="relative rounded-2xl border border-border/60 bg-card/40 backdrop-blur aspect-video overflow-hidden shadow-2xl shadow-primary/5">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/5" />
+              <div className="absolute inset-0 bg-linear-to-br from-primary/10 via-transparent to-primary/5" />
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
                   <div className="inline-flex size-20 rounded-2xl bg-primary/15 border border-primary/30 items-center justify-center mb-4">
@@ -283,58 +288,56 @@ export default function Home() {
                 cta: "Go Agency",
                 highlight: false,
               },
-            ].map(
-              ({ name, price, tagline, features, cta, highlight }) => (
-                <Card
-                  key={name}
-                  className={
-                    highlight
-                      ? "bg-card border-primary/40 shadow-lg shadow-primary/10 relative"
-                      : "bg-card/40 backdrop-blur border-border/60"
-                  }
-                >
-                  {highlight && (
-                    <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground">
-                      Most popular
-                    </Badge>
-                  )}
-                  <CardContent className="p-8">
-                    <h3 className="text-lg font-semibold">{name}</h3>
-                    <p className="text-muted-foreground text-sm mt-1">
-                      {tagline}
-                    </p>
-                    <div className="mt-6 flex items-baseline gap-1">
-                      <span className="text-4xl font-semibold">{price}</span>
-                      <span className="text-muted-foreground text-sm">
-                        /month
-                      </span>
-                    </div>
-                    <Separator className="my-6" />
-                    <ul className="space-y-3">
-                      {features.map((f) => (
-                        <li key={f} className="flex items-start gap-2 text-sm">
-                          <Check className="size-4 text-primary mt-0.5 shrink-0" />
-                          <span>{f}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <Button
-                      className="w-full mt-8"
-                      variant={highlight ? "default" : "outline"}
-                      asChild
-                    >
-                      <Link href="/sign-up">{cta}</Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              )
-            )}
+            ].map(({ name, price, tagline, features, cta, highlight }) => (
+              <Card
+                key={name}
+                className={
+                  highlight
+                    ? "bg-card border-primary/40 shadow-lg shadow-primary/10 relative"
+                    : "bg-card/40 backdrop-blur border-border/60"
+                }
+              >
+                {highlight && (
+                  <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground">
+                    Most popular
+                  </Badge>
+                )}
+                <CardContent className="p-8">
+                  <h3 className="text-lg font-semibold">{name}</h3>
+                  <p className="text-muted-foreground text-sm mt-1">
+                    {tagline}
+                  </p>
+                  <div className="mt-6 flex items-baseline gap-1">
+                    <span className="text-4xl font-semibold">{price}</span>
+                    <span className="text-muted-foreground text-sm">
+                      /month
+                    </span>
+                  </div>
+                  <Separator className="my-6" />
+                  <ul className="space-y-3">
+                    {features.map((f) => (
+                      <li key={f} className="flex items-start gap-2 text-sm">
+                        <Check className="size-4 text-primary mt-0.5 shrink-0" />
+                        <span>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button
+                    className="w-full mt-8"
+                    variant={highlight ? "default" : "outline"}
+                    asChild
+                  >
+                    <Link href="/sign-up">{cta}</Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </section>
 
         {/* CTA */}
         <section className="mx-auto max-w-5xl px-6 py-24">
-          <Card className="bg-gradient-to-br from-primary/10 via-card to-card border-primary/20 overflow-hidden">
+          <Card className="bg-linear-to-br from-primary/10 via-card to-card border-primary/20 overflow-hidden">
             <CardContent className="p-12 md:p-16 text-center">
               <h2 className="text-3xl md:text-4xl font-semibold tracking-tight max-w-2xl mx-auto">
                 Ship a landing page that actually looks like{" "}
@@ -358,12 +361,15 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t border-border/40 mt-auto">
         <div className="mx-auto max-w-7xl px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-2">
-            <div className="size-7 rounded-md bg-primary/15 border border-primary/30 flex items-center justify-center">
-              <Boxes className="size-3.5 text-primary" />
-            </div>
-            <span className="text-sm font-medium">Motion Digital</span>
-            <span className="text-xs text-muted-foreground ml-3">
+          <div className="flex items-center gap-3">
+            <Image
+              src="/motion_digital_logo_stretched.png"
+              alt="Motion Digital"
+              width={1167}
+              height={338}
+              className="h-10 w-auto opacity-80"
+            />
+            <span className="text-xs text-muted-foreground">
               © {new Date().getFullYear()}
             </span>
           </div>
@@ -380,16 +386,10 @@ export default function Home() {
             >
               GitHub
             </Link>
-            <Link
-              href="/privacy"
-              className="hover:text-foreground transition"
-            >
+            <Link href="/privacy" className="hover:text-foreground transition">
               Privacy
             </Link>
-            <Link
-              href="/terms"
-              className="hover:text-foreground transition"
-            >
+            <Link href="/terms" className="hover:text-foreground transition">
               Terms
             </Link>
           </div>
