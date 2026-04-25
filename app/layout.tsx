@@ -1,21 +1,26 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Inter_Tight } from "next/font/google";
+import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
+import { NoiseOverlay } from "@/components/ui/noise-overlay";
 import "./globals.css";
 
-const geistSans = Geist({
+const inter = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const interTight = Inter_Tight({
+  variable: "--font-display",
   subsets: ["latin"],
+  weight: ["600", "700", "800"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Motion Digital — AI-powered 3D hero sections",
+  title: "Motion Digital — Crafting motion-driven brand experiences",
   description:
-    "Upload your product. Describe the vibe. Get a polished 3D animated hero section for your website in seconds.",
+    "Motion Digital is a creative studio building cinematic web experiences, brand films, and interactive moments that move people.",
 };
 
 export default function RootLayout({
@@ -26,10 +31,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
+      className={`${inter.variable} ${interTight.variable} h-full antialiased dark`}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground">
-        {children}
+      <body className="min-h-full bg-background text-foreground font-sans selection:bg-primary/30 selection:text-foreground">
+        <NoiseOverlay />
+        <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>
     </html>
   );

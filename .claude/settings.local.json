@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem -Path c:\\\\PantyPost\\\\motiondigital -Directory | Where-Object { $_.Name -notin @\\('node_modules', '.next', '.git'\\) } | Select-Object Name; Write-Output '---'; Get-ChildItem -Path c:\\\\PantyPost\\\\motiondigital -File | Select-Object Name)",
+      "PowerShell($dirs = Get-ChildItem -Path c:\\\\PantyPost\\\\motiondigital -Directory | Where-Object { $_.Name -notin @\\('node_modules', '.next', '.git'\\) }; $dirs | ForEach-Object { Write-Output $_.Name })",
+      "PowerShell(npm install motion lenis 2>&1)",
+      "PowerShell(npm run dev 2>&1)",
+      "PowerShell(Out-File -FilePath dev.log -Encoding utf8)",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri http://localhost:3000 -UseBasicParsing -TimeoutSec 60; \"Status: $\\($r.StatusCode\\)\"; \"Length: $\\($r.Content.Length\\)\" } catch { \"Error: $_\" })",
+      "PowerShell(npx tsc --noEmit 2>&1)",
+      "PowerShell(Tee-Object -FilePath dev.log)",
+      "PowerShell(Start-Sleep -Seconds 5; try { $r = Invoke-WebRequest -Uri http://localhost:3000 -UseBasicParsing -TimeoutSec 60; \"Status: $\\($r.StatusCode\\), Length: $\\($r.Content.Length\\)\" } catch { \"Error: $_\" })",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri http://localhost:3000 -UseBasicParsing -TimeoutSec 60; \"Status: $\\($r.StatusCode\\), Length: $\\($r.Content.Length\\)\" } catch { \"Error: $_\" })",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri http://localhost:3000 -UseBasicParsing -TimeoutSec 90; \"Status: $\\($r.StatusCode\\), Length: $\\($r.Content.Length\\)\" } catch { \"Error: $_\" })",
+      "PowerShell(npm run build 2>&1)"
+    ]
+  }
+}
