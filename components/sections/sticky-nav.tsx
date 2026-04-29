@@ -6,9 +6,10 @@ import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
-  { label: "Work", href: "#work" },
-  { label: "Studio", href: "#studio" },
-  { label: "Contact", href: "#contact" },
+  { label: "Work", href: "/#work" },
+  { label: "Studio", href: "/#studio" },
+  { label: "Lab", href: "/lab" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export function StickyNav() {
@@ -52,10 +53,10 @@ export function StickyNav() {
         </nav>
 
         <Link
-          href="#contact"
+          href="/lab"
           className="group inline-flex h-9 items-center gap-1.5 rounded-full border border-border bg-white/[0.03] px-4 text-sm text-foreground transition-all duration-300 hover:border-[var(--color-md-accent)]/60 hover:bg-[var(--color-md-accent)]/15 hover:text-[var(--color-md-accent-soft)]"
         >
-          Start a project
+          Try the lab
           <ArrowUpRight className="size-3.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
         </Link>
       </div>
